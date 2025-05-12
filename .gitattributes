@@ -1,6 +1,12 @@
 lib/** linguist-detectable=true
+test/** linguist-detectable=true
+
 android/** linguist-detectable=false
 ios/** linguist-detectable=false
 macos/** linguist-detectable=false
 windows/** linguist-detectable=false
 linux/** linguist-detectable=false
+web/** linguist-detectable=false
+*.html linguist-detectable=false
+*.js linguist-detectable=false
+*.css linguist-detectable=false

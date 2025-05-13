@@ -16,14 +16,12 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('Home page')),
 
-      body: Center(
-        child: GestureDetector(
-          child: Text('Contador $count', style: TextStyle(fontSize: 20)),
-          onTap: () {
-            setState(() {
-              count++;
-            });
-          },
+      body: Container(
+        height: 200,
+        width: 200,
+        color: Colors.black,
+        child: Center(
+          child: Container(height: 100, width: 100, color: Colors.blue),
         ),
       ),
       floatingActionButton: FloatingActionButton(

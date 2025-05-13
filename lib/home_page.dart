@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,17 +13,26 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
+    return Scaffold(
+      appBar: AppBar(title: Text('Home page')),
+
+      body: Center(
         child: GestureDetector(
-          child: Text('Contador: $count'),
+          child: Text('Contador $count', style: TextStyle(fontSize: 20)),
           onTap: () {
             setState(() {
               count++;
             });
-            print('clicado');
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          setState(() {
+            count++;
+          });
+        },
       ),
     );
   }

@@ -15,10 +15,16 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home page'),
-      actions: [ CustomSwitch()],),
+      appBar: AppBar(title: Text('Home page'), actions: [CustomSwitch()]),
 
-      body: Center(child: CustomSwitch()),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Text('Contador: $count'), CustomSwitch()],
+        ),
+      ),
 
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

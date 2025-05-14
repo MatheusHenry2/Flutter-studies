@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:meu_app/app_controller.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,14 +17,15 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('Home page')),
 
-      body: Container(
-        height: 200,
-        width: 200,
-        color: Colors.black,
-        child: Center(
-          child: Container(height: 100, width: 100, color: Colors.blue),
+      body: Center(
+        child: Switch(
+          value: AppController.instance.isDarkTheme,
+          onChanged: (value) {
+            AppController.instance.changeTheme();
+          },
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {

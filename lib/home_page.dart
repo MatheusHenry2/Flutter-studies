@@ -20,13 +20,24 @@ class HomePageState extends State<HomePage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: [
             Text('Contador: $count'),
             Container(height: 10),
             CustomSwitch(),
-            Container(height: 10),
+            Container(height: 0),
+            CustomSwitch(),
+            Container(height: 0),
+            CustomSwitch(),
+            Container(height: 0),
+            CustomSwitch(),
+            Container(height: 0),
+            CustomSwitch(),
+            Container(height: 0),
+            CustomSwitch(),
+            Container(height: 0),
+            CustomSwitch(),
+            Container(height: 0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,

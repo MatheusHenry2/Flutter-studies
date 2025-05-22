@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -49,6 +51,12 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     if (email == "matheus" && password == "123") {
                       print("correto");
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => HomePage())
+                      );
+                      // Navigator.of(context).pushReplacement( // quando nao tem mais navegação fica com o voltar, meio que um sistema de navegação
+                      //     MaterialPageRoute(builder: (context) => HomePage())
+                      // );
                     } else {
                       print("login inválido");
                     }

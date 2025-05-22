@@ -51,12 +51,12 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     if (email == "matheus" && password == "123") {
                       print("correto");
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => HomePage())
-                      );
+                      Navigator.of(context).pushNamed('/home');
                       // Navigator.of(context).pushReplacement( // quando nao tem mais navegação fica com o voltar, meio que um sistema de navegação
                       //     MaterialPageRoute(builder: (context) => HomePage())
                       // );
+
+                      // Navigator.of(context).pushReplacementNamed('/home'); AQ VC PODE FORCAR A ENTRAR NA TELA e nao ter o back entao pra login pode ser interessante
                     } else {
                       print("login inválido");
                     }

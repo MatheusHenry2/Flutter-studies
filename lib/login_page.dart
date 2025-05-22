@@ -25,6 +25,15 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                  width: 150,
+                  height: 150,
+                  child: Image.network(
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/250px-Logo_TV_2015.png",
+                  ),
+                ),Container(
+                  height: 20,
+                ),
                 TextField(
                   onChanged: (text) {
                     email = text;

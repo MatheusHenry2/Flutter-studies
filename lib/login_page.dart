@@ -28,9 +28,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   width: 150,
                   height: 150,
-                  child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/250px-Logo_TV_2015.png",
-                  ),
+                  child: Image.asset('assets/imagens/logo.png')
                 ),Container(
                   height: 20,
                 ),

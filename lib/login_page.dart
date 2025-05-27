@@ -29,43 +29,61 @@ class _LoginPageState extends State<LoginPage> {
                 child: Image.asset('assets/imagens/logo.png'),
               ),
               Container(height: 20),
-              TextField(
-                onChanged: (text) {
-                  email = text;
-                },
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: 'E-mail',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                onChanged: (text) {
-                  password = text;
-                },
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {
-                  if (email == "matheus" && password == "123") {
-                    print("correto");
-                    Navigator.of(context).pushNamed('/home');
-                    // Navigator.of(context).pushReplacement( // quando nao tem mais navegação fica com o voltar, meio que um sistema de navegação
-                    //     MaterialPageRoute(builder: (context) => HomePage())
-                    // );
 
-                    // Navigator.of(context).pushReplacementNamed('/home'); AQ VC PODE FORCAR A ENTRAR NA TELA e nao ter o back entao pra login pode ser interessante
-                  } else {
-                    print("login inválido");
-                  }
-                },
-                child: const Text('Entrar'),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 12,
+                    right: 12,
+                    top: 24,
+                    bottom: 20,
+                  ),
+                  child: Column(
+                    children: [
+                      TextField(
+                        onChanged: (text) {
+                          email = text;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        onChanged: (text) {
+                          password = text;
+                        },
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          foregroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 24,
+                          ),
+                        ),
+                        onPressed: () {
+                          if (email == "matheus" && password == "123") {
+                            print("correto");
+                            Navigator.of(context).pushNamed('/home');
+                          } else {
+                            print("login inválido");
+                          }
+                        },
+                        child: const Text('Entrar'),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),

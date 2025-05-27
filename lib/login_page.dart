@@ -13,67 +13,82 @@ class _LoginPageState extends State<LoginPage> {
   String email = "";
   String password = "";
 
+  Widget _body() {
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 150,
+                height: 150,
+                child: Image.asset('assets/imagens/logo.png'),
+              ),
+              Container(height: 20),
+              TextField(
+                onChanged: (text) {
+                  email = text;
+                },
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: 'E-mail',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                onChanged: (text) {
+                  password = text;
+                },
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () {
+                  if (email == "matheus" && password == "123") {
+                    print("correto");
+                    Navigator.of(context).pushNamed('/home');
+                    // Navigator.of(context).pushReplacement( // quando nao tem mais navegação fica com o voltar, meio que um sistema de navegação
+                    //     MaterialPageRoute(builder: (context) => HomePage())
+                    // );
+
+                    // Navigator.of(context).pushReplacementNamed('/home'); AQ VC PODE FORCAR A ENTRAR NA TELA e nao ter o back entao pra login pode ser interessante
+                  } else {
+                    print("login inválido");
+                  }
+                },
+                child: const Text('Entrar'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 150,
-                  height: 150,
-                  child: Image.asset('assets/imagens/logo.png')
-                ),Container(
-                  height: 20,
-                ),
-                TextField(
-                  onChanged: (text) {
-                    email = text;
-                  },
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: 'E-mail',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  onChanged: (text) {
-                    password = text;
-                  },
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: () {
-                    if (email == "matheus" && password == "123") {
-                      print("correto");
-                      Navigator.of(context).pushNamed('/home');
-                      // Navigator.of(context).pushReplacement( // quando nao tem mais navegação fica com o voltar, meio que um sistema de navegação
-                      //     MaterialPageRoute(builder: (context) => HomePage())
-                      // );
-
-                      // Navigator.of(context).pushReplacementNamed('/home'); AQ VC PODE FORCAR A ENTRAR NA TELA e nao ter o back entao pra login pode ser interessante
-                    } else {
-                      print("login inválido");
-                    }
-                  },
-                  child: const Text('Entrar'),
-                ),
-              ],
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Image.asset(
+              'assets/imagens/background.jpg',
+              fit: BoxFit.cover,
             ),
           ),
-        ),
+          Container(color: Colors.black.withOpacity(0.5)),
+          _body(),
+        ],
       ),
     );
   }

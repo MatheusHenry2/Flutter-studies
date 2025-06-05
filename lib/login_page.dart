@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -10,86 +8,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String email = "";
-  String password = "";
+  final _formKey = GlobalKey<FormState>();
+  String _email = '';
+  String _password = '';
 
-  Widget _body() {
-    return SingleChildScrollView(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 150,
-                height: 150,
-                child: Image.asset('assets/imagens/logo.png'),
-              ),
-              Container(height: 20),
-
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 12,
-                    right: 12,
-                    top: 24,
-                    bottom: 20,
-                  ),
-                  child: Column(
-                    children: [
-                      TextField(
-                        onChanged: (text) {
-                          email = text;
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextField(
-                        onChanged: (text) {
-                          password = text;
-                        },
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          foregroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(
-                            vertical: 12,
-                            horizontal: 24,
-                          ),
-                        ),
-                        onPressed: () {
-                          if (email == "matheus" && password == "123") {
-                            print("correto");
-                            Navigator.of(context).pushNamed('/home');
-                          } else {
-                            print("login inválido");
-                          }
-                        },
-                        child: const Text('Entrar'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      if (_email == 'matheus' && _password == '123') {
+        Navigator.of(context).pushNamed('/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Credenciais inválidas')),
+        );
+      }
+    }
   }
 
   @override
@@ -105,7 +38,76 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Container(color: Colors.black.withOpacity(0.5)),
-          _body(),
+          SingleChildScrollView(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: Image.asset('assets/imagens/logo.png'),
+                    ),
+                    const SizedBox(height: 20),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              TextFormField(
+                                decoration: const InputDecoration(
+                                  labelText: 'E-mail',
+                                  border: OutlineInputBorder(),
+                                ),
+                                keyboardType: TextInputType.emailAddress,
+                                onSaved: (v) => _email = v ?? '',
+                                validator: (v) {
+                                  if (v == null || v.isEmpty) {
+                                    return 'Informe o e-mail';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                decoration: const InputDecoration(
+                                  labelText: 'Senha',
+                                  border: OutlineInputBorder(),
+                                ),
+                                obscureText: true,
+                                onSaved: (v) => _password = v ?? '',
+                                validator: (v) {
+                                  if (v == null || v.isEmpty) {
+                                    return 'Informe a senha';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 12),
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: _submit,
+                                  child: const Text('Entrar'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

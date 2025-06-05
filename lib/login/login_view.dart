@@ -42,14 +42,10 @@ class _LoginViewState extends State<LoginView> {
                         children: [
                           Image.asset(
                             'assets/imagens/logo2.png',
-                            width: 120,
-                            height: 120,
+                            width: 180,
+                            height: 180,
                           ),
                           const SizedBox(height: 60),
-                          const Text(
-                            'Este aplicativo \u00e9 destinado ao treinamento de Kotlin',
-                            textAlign: TextAlign.center,
-                          ),
                         ],
                       ),
                     ),

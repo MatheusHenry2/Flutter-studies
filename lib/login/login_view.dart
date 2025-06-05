@@ -5,6 +5,7 @@ import 'login_state.dart';
 
 class LoginView extends StatefulWidget {
   final LoginIntent intent;
+
   const LoginView({super.key, required this.intent});
 
   @override
@@ -45,13 +46,13 @@ class _LoginViewState extends State<LoginView> {
                       state.isLoading
                           ? const CircularProgressIndicator()
                           : SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton.icon(
-                                onPressed: widget.intent.signInWithGoogle,
-                                icon: const Icon(Icons.login),
-                                label: const Text('Sign in with Google'),
-                              ),
+                            width: double.infinity,
+                            child: ElevatedButton.icon(
+                              onPressed: widget.intent.signInWithGoogle,
+                              icon: const Icon(Icons.login),
+                              label: const Text('Sign in with Google'),
                             ),
+                          ),
                       if (state.errorMessage != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 16),

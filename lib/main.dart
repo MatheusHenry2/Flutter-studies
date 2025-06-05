@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login/login_view.dart';
 import 'login/firebase_auth_service.dart';
 import 'login/login_intent.dart';
+import 'login/auth_service.dart';
 
 void main() {
   final authService = FirebaseAuthService();

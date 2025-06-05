@@ -31,41 +31,60 @@ class _LoginViewState extends State<LoginView> {
             height: double.infinity,
             color: Theme.of(context).colorScheme.primaryContainer,
             child: SafeArea(
-              child: Center(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 120,
-                        color: Theme.of(context).colorScheme.primary,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 120,
+                            height: 120,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          const SizedBox(height: 60),
+                          const Text(
+                            'Este aplicativo \u00e9 destinado ao treinamento de Kotlin',
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 60),
-                      state.isLoading
-                          ? const CircularProgressIndicator()
-                          : SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton.icon(
-                              onPressed: widget.intent.signInWithGoogle,
-                              icon: const Icon(Icons.login),
-                              label: const Text('Sign in with Google'),
-                            ),
-                          ),
-                      if (state.errorMessage != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: Text(
-                            state.errorMessage!,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                          ),
-                        ),
-                    ],
+                    ),
                   ),
-                ),
+                  Positioned(
+                    left: 24,
+                    right: 24,
+                    bottom: 20,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        state.isLoading
+                            ? const CircularProgressIndicator()
+                            : SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton.icon(
+                                  onPressed: widget.intent.signInWithGoogle,
+                                  icon: const Icon(Icons.login),
+                                  label: const Text('Sign in with Google'),
+                                ),
+                              ),
+                        if (state.errorMessage != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Text(
+                              state.errorMessage!,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           );

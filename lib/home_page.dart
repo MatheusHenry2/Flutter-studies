@@ -10,79 +10,34 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  int count = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            UserAccountsDrawerHeader(
-              currentAccountPicture: ClipOval(
-                child: Image.asset('assets/imagens/logo.png'),
-              ),
-              // currentAccountPicture: ClipRRect(
-              //   child: Image.asset('assets/imagens/logo.png'),
-              // ),
-              accountName: Text('Matheus'),
-              accountEmail: Text(
-                'william.henry.harrison@example-pet-store.com',
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('inicio'),
-              subtitle: Text('tela inicial'),
-              onTap: () {
-                print('home');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('logout'),
-              subtitle: Text('Finalizar sessao'),
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/');
-              },
-            ),
-          ],
-        ),
-      ),
-      appBar: AppBar(title: Text('Home page'), actions: [CustomSwitch()]),
-
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
+      backgroundColor: Colors.lightBlue.shade100,
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Contador: $count'),
-            Container(height: 10),
-            CustomSwitch(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(width: 50, height: 50, color: Colors.black),
-                Container(width: 50, height: 50, color: Colors.black),
-              ],
+            Container(
+              width: 150,
+              height: 150,
+              child: Image.asset('assets/imagens/logo.png'),
+            ),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('Logar com facebook'),
+              ),
             ),
           ],
         ),
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            count++;
-          });
-        },
       ),
     );
   }
 }
+
+//'assets/imagens/logo.png
 
 class CustomSwitch extends StatelessWidget {
   @override

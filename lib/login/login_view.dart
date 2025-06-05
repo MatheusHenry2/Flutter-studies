@@ -40,10 +40,10 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
+                          Image.asset(
+                            'assets/imagens/logo2.png',
                             width: 120,
                             height: 120,
-                            color: Theme.of(context).colorScheme.primary,
                           ),
                           const SizedBox(height: 60),
                           const Text(

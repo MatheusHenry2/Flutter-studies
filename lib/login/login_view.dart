@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'login_intent.dart';
 import 'login_state.dart';
+import '../app_logger.dart';
 
 class LoginView extends StatefulWidget {
   final LoginIntent intent;
@@ -14,7 +15,13 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   @override
+  void initState() {
+    super.initState();
+    logger.i('LoginView initialized');
+  }
+  @override
   void dispose() {
+    logger.i('LoginView disposed');
     widget.intent.dispose();
     super.dispose();
   }
@@ -26,6 +33,15 @@ class _LoginViewState extends State<LoginView> {
         stream: widget.intent.state,
         builder: (context, snapshot) {
           final state = snapshot.data ?? const LoginState.initial();
+          if (state.isLoading) {
+            logger.i('view -> loading');
+          } else if (state.isSuccess) {
+            logger.i('view -> success');
+          } else if (state.errorMessage != null) {
+            logger.i('view -> error');
+          } else {
+            logger.i('view -> initial');
+          }
           return Container(
             width: double.infinity,
             height: double.infinity,
@@ -70,7 +86,10 @@ class _LoginViewState extends State<LoginView> {
                                       borderRadius: BorderRadius.circular(16),
                                     ),
                                   ),
-                                  onPressed: widget.intent.signInWithGoogle,
+                                  onPressed: () {
+                                    logger.i('Google sign-in button pressed');
+                                    widget.intent.signInWithGoogle();
+                                  },
                                   icon: const Icon(Icons.login),
                                   label: const Text('Sign in with Google'),
                                 ),

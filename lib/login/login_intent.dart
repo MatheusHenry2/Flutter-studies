@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../main.dart';
+import '../app_logger.dart';
 import 'auth_service.dart';
 import 'login_state.dart';
 
@@ -11,21 +11,21 @@ class LoginIntent {
   Stream<LoginState> get state => _controller.stream;
 
   LoginIntent(this._authService) {
-    logger.i('AUTH -> state: initial');
+    logger.i('state: initial');
     _controller.add(const LoginState.initial());
   }
 
   Future<void> signInWithGoogle() async {
-    logger.i('AUTH -> state: loading');
+    logger.i('state: loading');
     _controller.add(const LoginState.loading());
     try {
-      logger.i('AUTH -> signInWithGoogle called');
+      logger.i('signInWithGoogle called');
       await _authService.signInWithGoogle();
-      logger.i('AUTH -> state: success');
+      logger.i('state: success');
       _controller.add(const LoginState.success());
     } catch (e, st) {
-      logger.e('AUTH -> error: $e', e, st);
-      logger.i('AUTH -> state: error');
+      logger.e('error: $e', e, st);
+      logger.i('state: error');
       _controller.add(LoginState.error(e.toString()));
     }
   }

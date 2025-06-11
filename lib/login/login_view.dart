@@ -29,7 +29,7 @@ class _LoginViewState extends State<LoginView> {
           return Container(
             width: double.infinity,
             height: double.infinity,
-            color: Theme.of(context).colorScheme.primaryContainer,
+            color: const Color(0xFFF5F5F5),
             child: SafeArea(
               child: Stack(
                 children: [
@@ -41,11 +41,10 @@ class _LoginViewState extends State<LoginView> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            'assets/imagens/logo2.png',
-                            width: 180,
-                            height: 180,
+                            'assets/imagens/logo3.png',
+                            width: 220,
+                            height: 220,
                           ),
-                          const SizedBox(height: 60),
                         ],
                       ),
                     ),
@@ -62,6 +61,15 @@ class _LoginViewState extends State<LoginView> {
                             : SizedBox(
                                 width: double.infinity,
                                 child: ElevatedButton.icon(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF6200EE),
+                                    foregroundColor: Colors.white,
+                                    minimumSize:
+                                        const Size(double.infinity, 48),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                  ),
                                   onPressed: widget.intent.signInWithGoogle,
                                   icon: const Icon(Icons.login),
                                   label: const Text('Sign in with Google'),

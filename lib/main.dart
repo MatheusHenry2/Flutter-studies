@@ -15,7 +15,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   logger.i('Application starting');
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+
   );
   logger.i('Firebase initialized');
   final authService = FirebaseAuthService();

@@ -9,22 +9,26 @@ class FirebaseAuthService implements AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
-  Future<void> signInWithGoogle() async {
+  Future<UserCredential> signInWithGoogle() async {
     logger.i('Starting Google sign-in');
     try {
-      final user = await _googleSignIn.signIn();
-      if (user == null) {
+      final googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        logger.w('Google sign-in aborted by user');
         throw Exception('Sign in aborted');
       }
-      final auth = await user.authentication;
+
+      final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
-        accessToken: auth.accessToken,
-        idToken: auth.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
-      await _auth.signInWithCredential(credential);
-      logger.i('Firebase sign in success');
+
+      final userCred = await _auth.signInWithCredential(credential);
+      logger.i('Firebase sign-in success for UID=${userCred.user?.uid}');
+      return userCred;
     } catch (e, st) {
-      logger.e('Firebase sign in error: $e', e, st);
+      logger.e('Firebase sign-in error', e, st);
       rethrow;
     }
   }

@@ -19,6 +19,7 @@ class _LoginViewState extends State<LoginView> {
     super.initState();
     logger.i('LoginView initialized');
   }
+
   @override
   void dispose() {
     logger.i('LoginView disposed');

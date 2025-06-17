@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'login_intent.dart';
 import 'login_state.dart';
 import '../app_logger.dart';
@@ -30,89 +29,69 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<LoginState>(
-        stream: widget.intent.state,
-        builder: (context, snapshot) {
-          final state = snapshot.data ?? const LoginState.initial();
-          if (state.isLoading) {
-            logger.i('view -> loading');
-          } else if (state.isSuccess) {
-            logger.i('view -> success');
-          } else if (state.errorMessage != null) {
-            logger.i('view -> error');
-          } else {
-            logger.i('view -> initial');
-          }
-          return Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: const Color(0xFFF5F5F5),
-            child: SafeArea(
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            'assets/imagens/logo3.png',
-                            width: 220,
-                            height: 220,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 24,
-                    right: 24,
-                    bottom: 20,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        state.isLoading
-                            ? const CircularProgressIndicator()
-                            : SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton.icon(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF6200EE),
-                                    foregroundColor: Colors.white,
-                                    minimumSize:
-                                        const Size(double.infinity, 48),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    logger.i('Google sign-in button pressed');
-                                    widget.intent.signInWithGoogle();
-                                  },
-                                  icon: const Icon(Icons.login),
-                                  label: const Text('Sign in with Google'),
-                                ),
-                              ),
-                        if (state.errorMessage != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Text(
-                              state.errorMessage!,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.error,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(height: 29),
+            const Text(
+              'Kotlin Quizzes',
+              style: TextStyle(
+                fontFamily: 'Space Grotesk',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Color(0xFF120D1C),
               ),
             ),
-          );
-        },
+            const SizedBox(height: 20),
+            const Text(
+              'Welcome back!',
+              style: TextStyle(
+                fontFamily: 'Space Grotesk',
+                fontWeight: FontWeight.bold,
+                fontSize: 28,
+                color: Color(0xFF120D1C),
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Continue your Kotlin learning journey with our interactive quizzes.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Space Grotesk',
+                  fontSize: 16,
+                  color: Color(0xFF120D1C),
+                ),
+              ),
+            ),
+            Expanded(child: Container()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF6B30E8),
+                  minimumSize: const Size(double.infinity, 48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                ),
+                child: const Text(
+                  'Login with Google',
+                  style: TextStyle(
+                    fontFamily: 'Space Grotesk',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFFFAF7FC),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+          ],
+        ),
       ),
     );
   }

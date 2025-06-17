@@ -6,9 +6,9 @@ import 'app_logger.dart';
 
 import 'firebase_options.dart';
 import 'login/login_view.dart';
-import 'login/firebase_auth_service.dart';
+import 'firebase_auth_service.dart';
 import 'login/login_intent.dart';
-import 'login/auth_service.dart';
+import 'auth_service.dart';
 
 
 Future<void> main() async {

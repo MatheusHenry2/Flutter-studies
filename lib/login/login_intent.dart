@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import '../app_logger.dart';
-import 'auth_service.dart';
+import '../auth_service.dart';
 import 'login_state.dart';
 
 class LoginIntent {

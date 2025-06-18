@@ -23,6 +23,9 @@ dependencies:
   # Logging
   logger: ^1.4.0
 
+  # SVG support
+  flutter_svg: ^2.2.0 # Versão 2.20.0 do flutter_svg
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,5 +39,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/imagens/logo3.png
-    - assets/imagens/background.jpg
+  - assets/imagens/profile.png
+  - assets/imagens/code.svg

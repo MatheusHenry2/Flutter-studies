@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../homepage/home_page.dart';
 import 'login_intent.dart';
 import 'login_state.dart';
 import '../app_logger.dart';
@@ -33,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 29),
+            const SizedBox(height: 30),
             const Text(
               'Kotlin Quizzes',
               style: TextStyle(
@@ -70,7 +71,13 @@ class _LoginViewState extends State<LoginView> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  logger.i('login with google button is clicked');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF6B30E8),
                   minimumSize: const Size(double.infinity, 48),

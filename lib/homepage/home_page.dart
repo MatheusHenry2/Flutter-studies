@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../quiz/quiz_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -63,197 +64,18 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: ListView(
                 children: [
-                  // Item 1
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEBE8F2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          'assets/imagens/code.svg',
-                          width: 24,
-                          height: 24,
-                        ),
-                      ),
-                    ),
-                    title: const Text(
-                      'Kotlin Basics',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF120D1C),
-                      ),
-                    ),
-                    subtitle: const Text(
-                      '10 questions',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontSize: 14,
-                        color: Color(0xFF634D99),
-                      ),
-                    ),
-                  ),
-
-                  // Item 2
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEBE8F2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          'assets/imagens/code.svg',
-                          width: 24,
-                          height: 24,
-                        ),
-                      ),
-                    ),
-                    title: const Text(
-                      'Data Types',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF120D1C),
-                      ),
-                    ),
-                    subtitle: const Text(
-                      '15 questions',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontSize: 14,
-                        color: Color(0xFF634D99),
-                      ),
-                    ),
-                  ),
-
-                  // Item 3
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEBE8F2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          'assets/imagens/code.svg',
-                          width: 24,
-                          height: 24,
-                        ),
-                      ),
-                    ),
-                    title: const Text(
-                      'Control Flow',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF120D1C),
-                      ),
-                    ),
-                    subtitle: const Text(
-                      '12 questions',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontSize: 14,
-                        color: Color(0xFF634D99),
-                      ),
-                    ),
-                  ),
-
-                  // Item 4
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEBE8F2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          'assets/imagens/code.svg',
-                          width: 24,
-                          height: 24,
-                        ),
-                      ),
-                    ),
-                    title: const Text(
-                      'Functions',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF120D1C),
-                      ),
-                    ),
-                    subtitle: const Text(
-                      '8 questions',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontSize: 14,
-                        color: Color(0xFF634D99),
-                      ),
-                    ),
-                  ),
-                  // Item 5
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEBE8F2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          'assets/imagens/code.svg',
-                          width: 24,
-                          height: 24,
-                        ),
-                      ),
-                    ),
-                    title: const Text(
-                      'Object-Oriented Programming',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF120D1C),
-                      ),
-                    ),
-                    subtitle: const Text(
-                      '20 questions',
-                      style: TextStyle(
-                        fontFamily: 'Space Grotesk',
-                        fontSize: 14,
-                        color: Color(0xFF634D99),
-                      ),
-                    ),
-                  ),
+                  _buildQuizTile(context, 'Kotlin Basics', '10 questions'),
+                  _buildQuizTile(context, 'Data Types', '15 questions'),
+                  _buildQuizTile(context, 'Control Flow', '12 questions'),
+                  _buildQuizTile(context, 'Functions', '8 questions'),
+                  _buildQuizTile(
+                      context, 'Object-Oriented Programming', '20 questions'),
                 ],
               ),
             ),
           ],
         ),
       ),
-
-      // Bottom Navigation
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
@@ -268,6 +90,50 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.person, size: 24), label: 'Profile'),
         ],
       ),
+    );
+  }
+
+  Widget _buildQuizTile(BuildContext context, String title, String subtitle) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          color: const Color(0xFFEBE8F2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: SvgPicture.asset(
+            'assets/imagens/code.svg',
+            width: 24,
+            height: 24,
+          ),
+        ),
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontFamily: 'Space Grotesk',
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+          color: Color(0xFF120D1C),
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: const TextStyle(
+          fontFamily: 'Space Grotesk',
+          fontSize: 14,
+          color: Color(0xFF634D99),
+        ),
+      ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const QuizScreen()),
+        );
+      },
     );
   }
 }

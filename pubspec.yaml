@@ -41,3 +41,4 @@ flutter:
   assets:
   - assets/imagens/profile.png
   - assets/imagens/code.svg
+  - assets/imagens/close.svg
